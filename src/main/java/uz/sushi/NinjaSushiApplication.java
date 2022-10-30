@@ -1,13 +1,13 @@
-package com.example.gc;
+package uz.sushi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GcApplication {
+public class NinjaSushiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GcApplication.class, args);
+        SpringApplication.run(NinjaSushiApplication.class, args);
     }
 
 }
