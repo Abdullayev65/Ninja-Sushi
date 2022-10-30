@@ -60,9 +60,9 @@ public class DataLoader implements CommandLineRunner {
 
             userRepository.save(admin);
         }
-        if (Beans.userRole.getId()==null) {
+        if (Beans.userRole.getId() == null)
             Beans.userRole.setAll(roleRepository.findRoleByName(ROLE_USER));
-        }
+
     }
 
 }
