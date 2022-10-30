@@ -37,4 +37,11 @@ public class Role {
         this.description = description;
         this.permissions = permissions;
     }
+
+    public void setAll(Role newMe) {
+        this.id = newMe.id;
+        this.name = newMe.name;
+        this.description = newMe.description;
+        this.permissions = newMe.permissions;
+    }
 }

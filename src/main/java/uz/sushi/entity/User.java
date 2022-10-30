@@ -3,39 +3,53 @@ package uz.sushi.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 @Getter
 @Setter
-@NoArgsConstructor
-@DynamicUpdate
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String phoneNumber;
+
+    @Column(unique = true)
+    private String email;
 
     @Column
     private String password;
+
+    @ManyToOne
+    private Address address;
+
+    @Column
+    private Boolean female;
 
     private boolean enabled;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Role role;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Product> favorites;
 
-    public User(String phoneNumber, String password) {
-        this.phoneNumber = phoneNumber;
+    public User() {
+        enabled=true;
+    }
+
+    public User(String email, String password) {
+        this();
+        this.email = email;
         this.password = password;
     }
 
@@ -46,7 +60,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.phoneNumber;
+        return phoneNumber != null ? phoneNumber : email;
     }
 
     /**
