@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import uz.sushi.entity.enums.PermissionEnum;
 
 import javax.persistence.*;
 import java.util.Set;

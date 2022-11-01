@@ -1,4 +1,4 @@
-package uz.sushi.entity;
+package uz.sushi.entity.enums;
 
 import org.springframework.security.core.GrantedAuthority;
 

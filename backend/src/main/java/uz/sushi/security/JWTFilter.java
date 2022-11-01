@@ -45,7 +45,7 @@ public class JWTFilter extends OncePerRequestFilter {
 
             String id = getIdFromToken(authorization);
             if (!id.isEmpty()) {
-                Optional<User> optionalUser = userRepository.findById(Integer.valueOf(id));
+                Optional<User> optionalUser = userRepository.findById(Long.valueOf(id));
                 if (optionalUser.isPresent()) {
                     User user = optionalUser.get();
                     if (user.isEnabled()
@@ -66,9 +66,9 @@ public class JWTFilter extends OncePerRequestFilter {
     }
 
     private String getIdFromToken(String authorization) {
-        String email = "";
+        String id = "";
         try {
-            email = Jwts
+            id = Jwts
                     .parser()
                     .setSigningKey(TOKEN_KEY)
                     .parseClaimsJws(authorization)
@@ -85,7 +85,7 @@ public class JWTFilter extends OncePerRequestFilter {
         } catch (IllegalArgumentException ex) {
             logger.error("JWT claims string is empty.");
         }
-        return email;
+        return id;
     }
 
     private void setCorsConfig(HttpServletRequest request,

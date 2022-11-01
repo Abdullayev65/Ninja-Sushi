@@ -1,4 +1,4 @@
-package uz.sushi.payload;
+package uz.sushi.payload.sign;
 
 import lombok.*;
 

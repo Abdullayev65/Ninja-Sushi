@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import uz.sushi.payload.ApiResult;
-import uz.sushi.payload.SignDTO;
+import uz.sushi.payload.sign.SignDTO;
+import uz.sushi.payload.sign.SignIn;
 import uz.sushi.service.AuthService;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 
 @RequestMapping(path = AuthController.AUTH_CONTROLLER_BASE_PATH)
@@ -28,7 +30,7 @@ public class AuthController {
     }
 
     @PostMapping(value = SIGN_IN_PATH)
-    ApiResult<String> signIn(@RequestBody @Valid SignDTO signDTO) {
+    ApiResult<SignIn> signIn(@RequestBody @Valid SignDTO signDTO) {
         return authService.signIn(signDTO);
     }
 

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import uz.sushi.entity.enums.ProductType;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,7 +20,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ProductType type;
+
+    @Column(nullable = false,unique = true)
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -28,5 +32,7 @@ public class Product {
     private String weight;
 
     private String price;
+
+    private String imagUrl;
 
 }
