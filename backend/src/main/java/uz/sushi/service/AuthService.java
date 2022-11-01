@@ -51,14 +51,15 @@ public class AuthService {
     public ApiResult<String> signIn(SignDTO signDTO) {
 
         // TODO Find why we need this
-        Authentication authentication = authenticationManager.authenticate(
+/*        Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         signDTO.getEmail(),
                         signDTO.getPassword()
                 ));
 
-        User user = (User) authentication.getPrincipal();
+        User user = (User) authentication.getPrincipal();*/
 
+        User user = new User(signDTO.getEmail(),signDTO.getPassword());
         return ApiResult.successResponse(
                 "SUCCESSFULLY_TOKEN_GENERATED",
                 generateToken(user.getEmail()));
@@ -67,13 +68,13 @@ public class AuthService {
     public String generateToken(String email) {
         Date expiredDate = new Date(new Date().getTime() + ACCESS_TOKEN_EXPIRATION_TIME);
 
-        return Jwts
+        return "Bearer ".concat(Jwts
                 .builder()
                 .setSubject(email)
                 .setIssuedAt(new Date())
                 .setExpiration(expiredDate)
                 .signWith(SignatureAlgorithm.HS512, ACCESS_TOKEN_KEY)
-                .compact();
+                .compact());
     }
 
 

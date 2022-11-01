@@ -63,7 +63,7 @@ public class SecurityConfig {
                                                 "/v2/api-docs",
                                                 "/configuration/ui")
                                         .permitAll()
-                                        .antMatchers("/api/**")
+                                        .antMatchers("/api-s/**")
                                         .authenticated())
                 .exceptionHandling()
                 .authenticationEntryPoint(myEntryPointHandler)

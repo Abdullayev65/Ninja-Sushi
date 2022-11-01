@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import uz.sushi.util.Beans;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -45,6 +46,7 @@ public class User implements UserDetails {
 
     public User() {
         enabled=true;
+        this.role = Beans.userRole;
     }
 
     public User(String email, String password) {

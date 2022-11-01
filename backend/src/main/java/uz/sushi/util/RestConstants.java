@@ -9,8 +9,6 @@ public interface RestConstants {
     String AUTHENTICATION_HEADER = "Authorization";
 
     String[] OPEN_PAGES = {
-            "/*",
             AuthController.AUTH_CONTROLLER_BASE_PATH + "/**",
-            "/api/auth/sign-up",
     };
 }

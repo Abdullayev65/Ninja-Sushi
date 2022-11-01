@@ -28,7 +28,7 @@ public class AuthController {
     }
 
     @PostMapping(value = SIGN_IN_PATH)
-    ApiResult<String> signIn(@Valid @RequestBody SignDTO signDTO) {
+    ApiResult<String> signIn(@RequestBody @Valid SignDTO signDTO) {
         return authService.signIn(signDTO);
     }
 
