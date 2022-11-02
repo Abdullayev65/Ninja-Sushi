@@ -10,7 +10,7 @@ spring:
     password: yusufbek200
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: false
     properties:
       hibernate:
