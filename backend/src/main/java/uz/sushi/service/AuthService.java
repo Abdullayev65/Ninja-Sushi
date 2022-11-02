@@ -15,6 +15,7 @@ import uz.sushi.payload.ApiResult;
 import uz.sushi.payload.sign.SignDTO;
 import uz.sushi.payload.sign.SignIn;
 import uz.sushi.repository.UserRepository;
+import uz.sushi.util.Beans;
 
 import java.util.Date;
 import java.util.Map;
@@ -61,10 +62,10 @@ public class AuthService {
         User user = userRepository.findByEmail(signDTO.getEmail());
         if (user == null || !passwordEncoder.matches(signDTO.getPassword(), user.getPassword()))
             throw RestException.restThrow("email or password is wrong", HttpStatus.BAD_REQUEST);
-
-        return ApiResult.successResponse(
-                "SUCCESSFULLY_TOKEN_GENERATED",
-                SignIn.user(generateToken(user.getId().toString())));
+        String token = generateToken(user.getId().toString());
+            return ApiResult.successResponse(
+                    "SUCCESSFULLY_TOKEN_GENERATED",
+                    new SignIn(token,!user.getRole().getId().equals(Beans.userRole.getId())));
     }
 
     private String generateToken(String id) {
