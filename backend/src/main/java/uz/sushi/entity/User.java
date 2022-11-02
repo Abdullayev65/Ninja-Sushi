@@ -10,6 +10,7 @@ import uz.sushi.util.Beans;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -42,7 +43,10 @@ public class User implements UserDetails {
     private Role role;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<Product> favorites;
+    private Set<Product> favorites;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<SetOfProduct> favoriteSets;
 
     public User() {
         enabled=true;

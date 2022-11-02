@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import uz.sushi.entity.User;
+import uz.sushi.oap.CurrentUser;
 import uz.sushi.payload.ApiResult;
 import uz.sushi.payload.ProductCollectionDTO;
 import uz.sushi.service.ProductService;
@@ -18,8 +20,8 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping(value = TOP_POSITIONS_SUSHI)
-    ApiResult<ProductCollectionDTO> topProducts() {
-        return productService.topProducts();
+    ApiResult<ProductCollectionDTO> topProducts(@CurrentUser User user) {
+        return productService.topProducts(user);
     }
 
 

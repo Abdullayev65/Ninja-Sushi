@@ -4,6 +4,6 @@ public enum ProductType {
     ROLL,
     SUSHI,
     SET,
-    NACK,
+    SNACKS,
     DRINK
 }

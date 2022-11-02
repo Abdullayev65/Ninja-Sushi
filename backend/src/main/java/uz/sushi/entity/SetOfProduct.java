@@ -29,4 +29,6 @@ public class SetOfProduct {
 
     private String price;
 
+    private String imagUrl;
+
 }
