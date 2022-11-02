@@ -10,7 +10,7 @@ import uz.sushi.service.ComponentOfFoodService;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = ProductController.PRODUCT_CONTROLLER_BASE_PATH)
+@RequestMapping(path = ComponentOfFoodController.BASE_PATH)
 @RequiredArgsConstructor
 public class ComponentOfFoodController {
     public static final String BASE_PATH = "/api/component";
