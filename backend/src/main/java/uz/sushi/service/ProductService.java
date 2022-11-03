@@ -64,7 +64,7 @@ public class ProductService {
     }
 
 
-    private List<ProductDTO> productList(ProductType productType, int page, int size, Set<Product> favorites) {
+    public List<ProductDTO> productList(ProductType productType, int page, int size, Set<Product> favorites) {
         return productRepository.findAllByTypeIs(productType,
                         PageRequest.of(page, size, Sort.by("id")))
                 .stream()
