@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import uz.sushi.entity.enums.ProductType;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -13,7 +15,7 @@ public class AddProduct {
 
     private String name;
 
-    private Integer[] components;
+    private List<Integer> components;
 
     private String weight;
 
