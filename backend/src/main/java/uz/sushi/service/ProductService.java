@@ -3,11 +3,13 @@ package uz.sushi.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.sushi.entity.Product;
 import uz.sushi.entity.SetOfProduct;
 import uz.sushi.entity.User;
 import uz.sushi.entity.enums.ProductType;
+import uz.sushi.exceptions.RestException;
 import uz.sushi.payload.ApiResult;
 import uz.sushi.payload.ProductCollectionDTO;
 import uz.sushi.payload.add.AddProduct;
@@ -45,8 +47,20 @@ public class ProductService {
     }
 
     public ApiResult<ProductDTO> addProduct(AddProduct addProduct) {
+        if (!productRepository.findByName(addProduct.getName())) {
+            throw RestException.restThrow("This product already exists!", HttpStatus.CONFLICT);
+        }
+        Product product = new Product();
+        product.setName(addProduct.getName());
+        product.setType(addProduct.getType());
+        product.setWeight(addProduct.getWeight());
+        product.setPrice(addProduct.getPrice());
+        product.setImagUrl(addProduct.getImagUrl());
+        product.setComponents(addProduct.getComponents());
 
-        return null;
+        Product save = productRepository.save(product);
+
+        return ApiResult.successResponse("Product added!", ProductDTO.mapping(save, false));
     }
 
 

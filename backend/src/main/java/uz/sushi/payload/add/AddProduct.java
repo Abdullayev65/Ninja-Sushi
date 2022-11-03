@@ -3,7 +3,9 @@ package uz.sushi.payload.add;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import uz.sushi.entity.ComponentOfFood;
 import uz.sushi.entity.enums.ProductType;
+import uz.sushi.payload.dto.ComponentOfFoodDTO;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class AddProduct {
 
     private String name;
 
-    private List<Integer> components;
+    private List<ComponentOfFood> components;
 
     private String weight;
 

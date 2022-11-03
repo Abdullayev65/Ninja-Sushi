@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findAllByTypeIs(ProductType type, Pageable pageable);
 
+    boolean findByName(String name);
 }
