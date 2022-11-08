@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.aspectj.apache.bcel.classfile.Module;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import uz.sushi.entity.ComponentOfFood;
 import uz.sushi.exceptions.RestException;
 import uz.sushi.payload.ApiResult;
@@ -47,7 +48,7 @@ public class ComponentOfFoodService {
         Optional<ComponentOfFood> optional;
         if ((optional = repository.findById(componentOfFoodDTO.getId())).isEmpty())
             throw RestException.restThrow("this component does not exist", HttpStatus.CONFLICT);
-        ComponentOfFood component = repository.save(componentOfFoodDTO.getComponent());
+        ComponentOfFood component = repository.save(componentOfFoodDTO.mapping());
 
         return ApiResult.successResponse(ComponentOfFoodDTO.mapping(component));
     }

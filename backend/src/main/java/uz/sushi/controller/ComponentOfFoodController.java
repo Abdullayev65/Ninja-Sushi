@@ -22,12 +22,12 @@ public class ComponentOfFoodController {
     private final ComponentOfFoodService service;
 
     @PostMapping(ADD)
-    ApiResult<ComponentOfFoodDTO> add(AddComponentOfFood addComponentOfFood) {
+    ApiResult<ComponentOfFoodDTO> add(@RequestBody AddComponentOfFood addComponentOfFood) {
         return service.add(addComponentOfFood);
     }
 
     @PutMapping(EDIT)
-    ApiResult<ComponentOfFoodDTO> edit(ComponentOfFoodDTO componentOfFoodDTO) {
+    ApiResult<ComponentOfFoodDTO> edit(@RequestBody ComponentOfFoodDTO componentOfFoodDTO) {
         return service.edit(componentOfFoodDTO);
     }
 

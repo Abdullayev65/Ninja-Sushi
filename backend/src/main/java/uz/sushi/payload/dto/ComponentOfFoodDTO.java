@@ -21,7 +21,7 @@ public class ComponentOfFoodDTO {
         return new ComponentOfFoodDTO(component.getId(),component.getName(),component.getImageUrl());
     }
 
-    public ComponentOfFood getComponent() {
+    public ComponentOfFood mapping() {
         return new ComponentOfFood(id,name,imageUrl);
     }
 }
