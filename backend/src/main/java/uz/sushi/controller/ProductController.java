@@ -1,6 +1,7 @@
 package uz.sushi.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import uz.sushi.entity.User;
 import uz.sushi.entity.enums.ProductType;
@@ -31,6 +32,7 @@ public class ProductController {
 
 
     @PostMapping(ADD)
+    @PreAuthorize("hasAnyAuthority('SUPER_ADMIN')")
     ApiResult<ProductDTO> add(@RequestBody AddProduct addProduct) {
         return productService.addProduct(addProduct);
     }

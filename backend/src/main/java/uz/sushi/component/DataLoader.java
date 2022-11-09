@@ -59,6 +59,10 @@ public class DataLoader implements CommandLineRunner {
             admin.setEnabled(true);
 
             userRepository.save(admin);
+        } else {
+            Role superAdminRole = userRepository.findByEmail(adminUsername).getRole();
+            superAdminRole.getPermissions().addAll(Set.of(PermissionEnum.values()));
+            roleRepository.save(superAdminRole);
         }
         if (Beans.userRole.getId() == null)
             Beans.userRole.setAll(roleRepository.findRoleByName(ROLE_USER));

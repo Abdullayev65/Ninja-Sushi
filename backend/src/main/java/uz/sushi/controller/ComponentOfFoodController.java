@@ -1,7 +1,11 @@
 package uz.sushi.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.UnsatisfiedServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
+import uz.sushi.entity.User;
+import uz.sushi.oap.CurrentUser;
 import uz.sushi.payload.ApiResult;
 import uz.sushi.payload.add.AddComponentOfFood;
 import uz.sushi.payload.dto.ComponentOfFoodDTO;
@@ -22,11 +26,13 @@ public class ComponentOfFoodController {
     private final ComponentOfFoodService service;
 
     @PostMapping(ADD)
+    @PreAuthorize("hasAnyAuthority('SUPER_ADMIN')")
     ApiResult<ComponentOfFoodDTO> add(@RequestBody AddComponentOfFood addComponentOfFood) {
         return service.add(addComponentOfFood);
     }
 
     @PutMapping(EDIT)
+    @PreAuthorize("hasAnyAuthority('SUPER_ADMIN')")
     ApiResult<ComponentOfFoodDTO> edit(@RequestBody ComponentOfFoodDTO componentOfFoodDTO) {
         return service.edit(componentOfFoodDTO);
     }

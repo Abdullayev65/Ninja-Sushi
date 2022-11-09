@@ -1,11 +1,10 @@
 package uz.sushi.service;
 
 import lombok.RequiredArgsConstructor;
-import org.aspectj.apache.bcel.classfile.Module;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import uz.sushi.entity.ComponentOfFood;
+import uz.sushi.entity.User;
 import uz.sushi.exceptions.RestException;
 import uz.sushi.payload.ApiResult;
 import uz.sushi.payload.add.AddComponentOfFood;
@@ -20,6 +19,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ComponentOfFoodService {
     private final ComponentOfFoodRepository repository;
+
     public ApiResult<ComponentOfFoodDTO> add(AddComponentOfFood addComponentOfFood) {
         if (repository.existsByName(addComponentOfFood.getName()))
             throw RestException.restThrow("this name alrady used", HttpStatus.BAD_REQUEST);
@@ -31,7 +31,7 @@ public class ComponentOfFoodService {
     public ApiResult<ComponentOfFoodDTO> get(Integer id) {
         Optional<ComponentOfFood> optional;
         if ((optional = repository.findById(id)).isEmpty())
-            throw RestException.restThrow("this name alrady used", HttpStatus.BAD_REQUEST);
+            throw RestException.restThrow("this id not found", HttpStatus.BAD_REQUEST);
         ComponentOfFood component = repository.save(optional.get());
 
         return ApiResult.successResponse(ComponentOfFoodDTO.mapping(component));
