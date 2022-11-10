@@ -21,7 +21,8 @@ import java.util.Set;
 public class ProductController {
     public static final String PRODUCT_CONTROLLER_BASE_PATH = "/api/product";
     public static final String TOP_POSITIONS_SUSHI = "/top-positions-products";
-    public static final String ADD = "/sign-up";
+    public static final String ADD = "/";
+    public static final String EDIT = "/{id}";
     public static final String ALL = "/{type}";
     private final ProductService productService;
 
@@ -35,6 +36,12 @@ public class ProductController {
     @PreAuthorize("hasAnyAuthority('SUPER_ADMIN')")
     ApiResult<ProductDTO> add(@RequestBody AddProduct addProduct) {
         return productService.addProduct(addProduct);
+    }
+
+    @PutMapping(EDIT)
+    @PreAuthorize("hasAnyAuthority('SUPER_ADMIN')")
+    ApiResult<ProductDTO> edit(@PathVariable Integer id, @RequestBody AddProduct addProduct) {
+        return productService.editProduct(id, addProduct);
     }
 
     @GetMapping(ALL)

@@ -11,4 +11,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findAllByTypeIs(ProductType type, Pageable pageable);
 
     boolean findByName(String name);
+
+    boolean existsByName(String name);
 }

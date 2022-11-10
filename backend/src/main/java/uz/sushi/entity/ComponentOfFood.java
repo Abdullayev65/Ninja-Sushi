@@ -23,4 +23,8 @@ public class ComponentOfFood {
     @Column
     private String imageUrl;
 
+    public static ComponentOfFood getInstance(Integer id) {
+        return new ComponentOfFood(id,null,null);
+    }
+
 }

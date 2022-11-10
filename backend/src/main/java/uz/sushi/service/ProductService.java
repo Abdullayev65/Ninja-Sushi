@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import uz.sushi.entity.Product;
 import uz.sushi.entity.SetOfProduct;
 import uz.sushi.entity.User;
@@ -19,6 +20,7 @@ import uz.sushi.repository.ProductRepository;
 import uz.sushi.repository.SetRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -80,4 +82,14 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    public ApiResult<ProductDTO> editProduct(Integer id, AddProduct addProduct) {
+        Product product = productRepository.findById(id).get();
+        if (product==null)
+            throw RestException.restThrow("not found such item",HttpStatus.NOT_FOUND);
+        if (productRepository.existsByName(addProduct.getName()))
+            throw RestException.restThrow("already exists such item",HttpStatus.CONFLICT);
+        addProduct.setFieldsToEntity(product);
+
+        return ApiResult.successResponse(ProductDTO.mapping(productRepository.save(product), false));
+    }
 }

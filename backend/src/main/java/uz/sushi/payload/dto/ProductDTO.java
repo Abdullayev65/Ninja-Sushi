@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.http.HttpStatus;
 import uz.sushi.entity.ComponentOfFood;
 import uz.sushi.entity.Product;
+import uz.sushi.exceptions.RestException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,11 +32,10 @@ public class ProductDTO {
 
     private String imagUrl;
 
-    public Boolean liked;
+    private Boolean liked;
 
     public ProductDTO(Product product, boolean liked) {
-        if (liked)
-            this.liked = Boolean.TRUE;
+        this.liked = liked ? Boolean.TRUE : Boolean.FALSE;
         this.id = product.getId();
         this.name = product.getName();
         this.weight = product.getWeight();

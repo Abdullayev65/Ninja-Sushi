@@ -8,6 +8,7 @@ import uz.sushi.entity.enums.ProductType;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -34,5 +35,11 @@ public class Product {
     private String price;
 
     private String imagUrl;
+
+    public void setComponents(List<Integer> components) {
+        this.components = components.stream()
+                .map(ComponentOfFood::getInstance)
+                .collect(Collectors.toList());
+    }
 
 }
