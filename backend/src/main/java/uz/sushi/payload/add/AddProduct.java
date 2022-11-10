@@ -32,9 +32,11 @@ public class AddProduct {
         product.setWeight(weight);
         product.setImagUrl(imagUrl);
         product.setPrice(price);
-        if (components.size() != product.getComponents().size()) {
-            throw RestException.restThrow("TODO in ProductDTO", HttpStatus.NOT_MODIFIED);
+        if (product.getComponents() != null) {
+            if (components.size() != product.getComponents().size())
+                throw RestException.restThrow("TODO in ProductDTO", HttpStatus.NOT_MODIFIED);
         }
+        else product.setComponents(components);
     }
 
 }

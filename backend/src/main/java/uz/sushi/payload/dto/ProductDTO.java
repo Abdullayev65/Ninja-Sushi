@@ -34,8 +34,8 @@ public class ProductDTO {
 
     private Boolean liked;
 
-    public ProductDTO(Product product, boolean liked) {
-        this.liked = liked ? Boolean.TRUE : Boolean.FALSE;
+    public ProductDTO(Product product, Boolean liked) {
+        this.liked = liked;
         this.id = product.getId();
         this.name = product.getName();
         this.weight = product.getWeight();
@@ -51,7 +51,7 @@ public class ProductDTO {
 
     }
 
-    public static ProductDTO mapping(Product product, boolean liked) {
+    public static ProductDTO mapping(Product product, Boolean liked) {
         return new ProductDTO(product, liked);
     }
 

@@ -49,20 +49,15 @@ public class ProductService {
     }
 
     public ApiResult<ProductDTO> addProduct(AddProduct addProduct) {
-        if (!productRepository.findByName(addProduct.getName())) {
+        if (productRepository.existsByName(addProduct.getName())) {
             throw RestException.restThrow("This product already exists!", HttpStatus.CONFLICT);
         }
         Product product = new Product();
-        product.setName(addProduct.getName());
-        product.setType(addProduct.getType());
-        product.setWeight(addProduct.getWeight());
-        product.setPrice(addProduct.getPrice());
-        product.setImagUrl(addProduct.getImagUrl());
-        product.setComponents(addProduct.getComponents());
+        addProduct.setFieldsToEntity(product);
 
         Product save = productRepository.save(product);
 
-        return ApiResult.successResponse("Product added!", ProductDTO.mapping(save, false));
+        return ApiResult.successResponse("Product added!", ProductDTO.mapping(save, null));
     }
 
 
