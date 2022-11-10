@@ -38,6 +38,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        userRepository.ketmon();
         if (Objects.equals(ddlMode, "create")) {
 
             Role superAdminRole = new Role();
