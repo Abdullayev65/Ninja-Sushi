@@ -46,7 +46,7 @@ public class ProductController {
 
     @GetMapping(ALL)
     ApiResult<List<ProductDTO>> getAll(@PathVariable String type) {
-        return ApiResult.successResponse(productService.productList(ProductType.valueOf(type), 0, 500, Set.of()));
+        return ApiResult.successResponse(productService.productList(ProductType.valueOf(type.toUpperCase()), 0, 500, Set.of()));
     }
 
 
