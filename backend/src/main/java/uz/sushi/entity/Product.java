@@ -27,7 +27,7 @@ public class Product {
     @Column(nullable = false,unique = true)
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<ComponentOfFood> components;
 
     private String weight;
