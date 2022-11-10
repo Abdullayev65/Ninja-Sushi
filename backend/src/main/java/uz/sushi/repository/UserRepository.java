@@ -13,10 +13,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByEmail(String email);
 
-    @Transactional
-    @Modifying
-    @Query(nativeQuery = true,
-            value = "ALTER TABLE product_components DROP CONSTRAINT uk_p8ceuvw5b17egmvv2tce56j0p"
-    )
-    void ketmon();
 }
