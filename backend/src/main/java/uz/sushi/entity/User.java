@@ -48,15 +48,19 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<SetOfProduct> favoriteSets;
 
+    @Column
+    private String name;
+
     public User() {
         enabled=true;
         this.role = Beans.userRole;
     }
 
-    public User(String email, String password) {
+    public User(String email, String password, String name) {
         this();
         this.email = email;
         this.password = password;
+        this.name = name;
     }
 
     @Override

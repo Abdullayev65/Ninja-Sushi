@@ -42,7 +42,8 @@ public class AuthService {
                     HttpStatus.CONFLICT);
         User user = new User(
                 signDTO.getEmail(),
-                passwordEncoder.encode(signDTO.getPassword()));
+                passwordEncoder.encode(signDTO.getPassword()),
+                signDTO.getName());
         user.setRole(roleUser);
 
         userRepository.save(user);

@@ -54,7 +54,8 @@ public class DataLoader implements CommandLineRunner {
 
             User admin = new User(
                     adminUsername,
-                    passwordEncoder.encode(adminPassword));
+                    passwordEncoder.encode(adminPassword),
+                    "Botir");
             admin.setRole(superAdminRole);
             admin.setEnabled(true);
 
@@ -66,7 +67,6 @@ public class DataLoader implements CommandLineRunner {
         }
         if (Beans.userRole.getId() == null)
             Beans.userRole.setAll(roleRepository.findRoleByName(ROLE_USER));
-        userRepository.executeQuery();
 
     }
 
