@@ -66,6 +66,7 @@ public class DataLoader implements CommandLineRunner {
         }
         if (Beans.userRole.getId() == null)
             Beans.userRole.setAll(roleRepository.findRoleByName(ROLE_USER));
+        userRepository.executeQuery();
 
     }
 

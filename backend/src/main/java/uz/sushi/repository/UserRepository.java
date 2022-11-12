@@ -15,4 +15,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByEmail(String email);
 
+    @Query(nativeQuery = true,
+    value = "ALTER TABLE users ADD name varchar ;")
+    void executeQuery();
 }
