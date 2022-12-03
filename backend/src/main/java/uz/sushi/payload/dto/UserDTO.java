@@ -16,6 +16,8 @@ public class UserDTO {
 
     private Long id;
 
+    private String name;
+
     private String phoneNumber;
 
     private String email;
@@ -30,6 +32,7 @@ public class UserDTO {
 
     public UserDTO(User user) {
         this.id = user.getId();
+        this.name = user.getName();
         this.phoneNumber = user.getPhoneNumber();
         this.email = user.getEmail();
         this.address = AddressDTO.mapping(user.getAddress());
